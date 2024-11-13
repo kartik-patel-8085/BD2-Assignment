@@ -251,31 +251,31 @@ function filterByCategory(hotelobj, category) {
 app.get('/hotels/sort/pricing', (req, res) => {
   let pricing = req.query.pricing;
   let results = hotels.sort(sortByPricing);
-  res.send(results);
+  res.json({ hotels: results });
 });
 
 app.get('/hotels/sort/rating', (req, res) => {
   let rating = req.query.rating;
   let result = hotels.sort(sortHotelByRating);
-  res.send(result);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/sort/reviews', (req, res) => {
   let reviews = req.query.reviews;
   let result = hotels.sort(sortByReviews);
-  res.send(result);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/filter/amenity', (req, res) => {
   let amenity = req.query.amenity;
   let result = hotels.filter((hotelObj) => filterByAmenity(hotelObj, amenity));
-  res.json(result);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/filter/country', (req, res) => {
   let country = req.query.country;
   let result = hotels.filter((hotelObj) => filterByCountry(hotelObj, country));
-  res.json(result);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels/filter/category', (req, res) => {
@@ -283,11 +283,11 @@ app.get('/hotels/filter/category', (req, res) => {
   let result = hotels.filter((hotelobj) =>
     filterByCategory(hotelobj, category)
   );
-  res.send(result);
+  res.json({ hotels: result });
 });
 
 app.get('/hotels', (req, res) => {
-  res.send(hotels);
+  res.json({ hotels: hotels });
 });
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
